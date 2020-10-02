@@ -12,17 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".DynamicReceiverTwo"
-            android:enabled="true"
-            android:exported="true">
-
-        </receiver>
-
-        <receiver
             android:name=".DynamicReceiverOne"
             android:enabled="true"
             android:exported="true" >
-            <intent-filter>
+            <intent-filter android:priority="100">
+                <action android:name="org.learn.broadcastplayground.ORDERED_STUFF" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".DynamicReceiverTwo"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="10">
                 <action android:name="org.learn.broadcastplayground.ORDERED_STUFF" />
             </intent-filter>
         </receiver>

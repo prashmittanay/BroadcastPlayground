@@ -68,11 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
                 boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
 
-
-                Log.d(TAG, "Is Charging: " + isCharging);
-                Log.d(TAG, "Charge Plug: " + chargePlug);
-                Log.d(TAG, "USB Charge: " + usbCharge);
-                Log.d(TAG, "AC Charge: " + acCharge);
+                Toast.makeText(MainActivity.this, "Is Charging: " + isCharging + "\n" +
+                        "Charge Plug: " + chargePlug + "\n" +
+                        "USB Charge: " + usbCharge + "\n" +
+                        "AC Charge: " + acCharge + "\n", Toast.LENGTH_SHORT).show();
             }
         });
     }
