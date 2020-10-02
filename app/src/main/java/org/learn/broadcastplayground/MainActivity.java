@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private  DynamicReceiverOne mDynamicReceiverOne;
     private DynamicReceiverTwo mDynamicReceiverTwo;
     private final static String EXTRAS = "PATH";
+    private Button mNormalBroadcastButton;
+    private Button mOrderedBroadcastButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +27,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDynamicReceiverOne = new DynamicReceiverOne();
         mDynamicReceiverTwo = new DynamicReceiverTwo();
+        mNormalBroadcastButton = findViewById(R.id.button_normal_broadcast);
+        mOrderedBroadcastButton = findViewById(R.id.button_ordered_broadcast);
+        attachButtonListeners();
+    }
+
+    private void attachButtonListeners() {
+        mNormalBroadcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DynamicReceiverOne.class);
+                intent.setAction("org.learn.broadcastplayground.CUSTOM_BROADCAST");
+                sendBroadcast(intent);
+            }
+        });
+
+        mOrderedBroadcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                constructOrderedBroadcast();
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         bindBroadcastReceivers();
-        constructOrderedBroadcast();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         this.unregisterReceiver(mDynamicReceiverOne);
+        this.unregisterReceiver(mDynamicReceiverTwo);
     }
 
     private void bindBroadcastReceivers() {

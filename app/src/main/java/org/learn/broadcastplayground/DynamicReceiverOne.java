@@ -19,6 +19,11 @@ public class DynamicReceiverOne extends BroadcastReceiver {
 
         if (intentActionString.equals("org.learn.broadcastplayground.ORDERED_STUFF")) {
             resultExtras.putString(EXTRAS, resultExtras.get(EXTRAS) + " -> " + TAG);
+        } else if (intentActionString.equals("org.learn.broadcastplayground.CUSTOM_BROADCAST")){
+            stringBuilder.append("Action: " + intent.getAction() + "\n");
+            stringBuilder.append("URI: " + intent.toUri(Intent.URI_INTENT_SCHEME).toString() + "\n");
+            String log = stringBuilder.toString();
+            Toast.makeText(context, log, Toast.LENGTH_LONG).show();
         } else {
             stringBuilder.append("Action: " + intent.getAction() + "\n");
             stringBuilder.append("URI: " + intent.toUri(Intent.URI_INTENT_SCHEME).toString() + "\n");
