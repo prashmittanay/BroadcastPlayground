@@ -12,9 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
+            android:name=".DynamicReceiverTwo"
+            android:enabled="true"
+            android:exported="true">
+
+        </receiver>
+
+        <receiver
             android:name=".DynamicReceiverOne"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="org.learn.broadcastplayground.ORDERED_STUFF" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".StaticReceiver"
             android:enabled="true"
