@@ -20,4 +20,10 @@
         android:text="Send Ordered Broadcast"
         android:id="@+id/button_ordered_broadcast" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read Sticky Broadcast Info"
+        android:id="@+id/button_sticky_info" />
+
 </LinearLayout>
