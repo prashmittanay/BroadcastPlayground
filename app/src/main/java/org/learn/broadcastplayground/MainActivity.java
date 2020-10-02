@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         bindBroadcastReceivers();
-
     }
 
     @Override
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindBroadcastReceivers() {
-        IntentFilter intentFilterConnectivity = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        IntentFilter intentFilterConnectivity = new IntentFilter();
         intentFilterConnectivity.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(mDynamicReceiverOne, intentFilterConnectivity);
 
